@@ -4,7 +4,7 @@
       "description": "SARAH controle les amplis YAMAHA",
       "version"    : "0.1",
       "answers"    : "Je m'en occupe !|Voilà qui est fait !|C'est fait !|Voilà !|Tout de suite !",
-      "yamip"      : "IP de l'ampli ?"
+      "yamip"      : ""
     }
   }
 }
