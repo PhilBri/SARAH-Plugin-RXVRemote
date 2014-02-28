@@ -1,0 +1,62 @@
+<grammar version="1.0" xml:lang="fr-FR" mode="voice" root="rulerxvremote" xmlns="http://www.w3.org/2001/06/grammar" tag-format="semantics/1.0">
+  <rule id="rulerxvremote" scope="public">
+    <example>Sarah allume lampli</example>
+    <tag>out.action=new Object(); </tag>
+    
+    <item>Sarah</item>
+    <one-of>
+      <item>allume lampli                       <tag>out.action.key="PUT@MAIN:PWR=On"       </tag></item>
+      <item>eteint lampli                       <tag>out.action.key="PUT@MAIN:PWR=Standby"  </tag></item>
+      <item>coupe le son de lampli              <tag>out.action.key="PUT@MAIN:MUTE=On/Off"  </tag></item>
+      <item>met le son de lampli                <tag>out.action.key="PUT@MAIN:MUTE=On/Off"  </tag></item>
+      <item>monte le son de lampli              <tag>out.action.key="PUT@MAIN:VOL=Up 2 dB"  </tag></item>
+      <item>monte un peu le son de lampli       <tag>out.action.key="PUT@MAIN:VOL=Up"       </tag></item>
+      <item>monte beaucoup le son de lampli     <tag>out.action.key="PUT@MAIN:VOL=Up 5 dB"  </tag></item>
+      <item>baisse le son de lampli             <tag>out.action.key="PUT@MAIN:VOL=Down 1 dB"</tag></item>
+      <item>baisse un peu le son de lampli      <tag>out.action.key="PUT@MAIN:VOL=Down"     </tag></item>
+      <item>baisse beaucoup le son de lampli    <tag>out.action.key="PUT@MAIN:VOL=Down 5 dB"</tag></item>
+      <item>sélèctionne le tunèr sur lampli     <tag>out.action.key="GET@MAIN:IMP=TUNER"    </tag></item>
+      <item>sélèctionne l'Avé 1 sur lampli      <tag>out.action.key="GET@MAIN:IMP=AV1"      </tag></item>
+      <item>sélèctionne l'Avé 2 sur lampli      <tag>out.action.key="GET@MAIN:IMP=AV2"      </tag></item>
+      <item>sélèctionne l'Avé 3 sur lampli      <tag>out.action.key="GET@MAIN:IMP=AV3"      </tag></item>
+      <item>sélèctionne l'Avé 4 sur lampli      <tag>out.action.key="GET@MAIN:IMP=AV4"      </tag></item>
+      <item>sélèctionne l'Avé 5 sur lampli      <tag>out.action.key="GET@MAIN:IMP=AV5"      </tag></item>
+      <item>sélèctionne l'Avé 6 sur lampli      <tag>out.action.key="GET@MAIN:IMP=AV6"      </tag></item>
+      <item>sélèctionne l'Avé 7 sur lampli      <tag>out.action.key="GET@MAIN:IMP=AV7"      </tag></item>
+      <item>sélèctionne l'auxiliaire sur lampli <tag>out.action.key="GET@MAIN:IMP=V-AUX"    </tag></item>
+      <item>sélèctionne l'Audio 1 sur lampli    <tag>out.action.key="GET@MAIN:IMP=AUDIO1"   </tag></item>
+      <item>sélèctionne l'Audio 2 sur lampli    <tag>out.action.key="GET@MAIN:IMP=AUDIO2"   </tag></item>
+      <item>sélèctionne l'Audio 3 sur lampli    <tag>out.action.key="GET@MAIN:IMP=AUDIO3"   </tag></item>
+      <item>sélèctionne l'Audio 4 sur lampli    <tag>out.action.key="GET@MAIN:IMP=AUDIO4"   </tag></item>
+      <item>sélèctionne le réseau sur lampli    <tag>out.action.key="GET@MAIN:IMP=NET"      </tag></item>
+      <item>sélèctionne le serveur sur lampli   <tag>out.action.key="GET@MAIN:IMP=SERVER"   </tag></item>
+      <item>sélèctionne les net radio sur lampli<tag>out.action.key="GET@MAIN:IMP=NET RADIO"</tag></item>
+      <item>sélèctionne l'U èss Bé sur lampli   <tag>out.action.key="GET@MAIN:IMP=USB"      </tag></item>
+      <item>sélèctionne l'ail pode sur lampli   <tag>out.action.key="GET@MAIN:IMP=iPod"     </tag></item>
+      <item>sélèctionne l'air plèye sur lampli  <tag>out.action.key="GET@MAIN:IMP=AirPlay"  </tag></item>
+      <item>sélèctionne la scène 1 sur lampli   <tag>out.action.key="GET@MAIN:IMP=Scene 1"  </tag></item>
+      <item>sélèctionne la scène 2 sur lampli   <tag>out.action.key="GET@MAIN:IMP=Scene 2"  </tag></item>
+      <item>sélèctionne la scène 3 sur lampli   <tag>out.action.key="GET@MAIN:IMP=Scene 3"  </tag></item>
+      <item>sélèctionne la scène 4 sur lampli   <tag>out.action.key="GET@MAIN:IMP=Scene 4"  </tag></item>
+      <item>sélèctionne la scène 5 sur lampli   <tag>out.action.key="GET@MAIN:IMP=Scene 5"  </tag></item>
+      <item>sélèctionne la scène 6 sur lampli   <tag>out.action.key="GET@MAIN:IMP=Scene 6"  </tag></item>
+      <item>sélèctionne la scène 7 sur lampli   <tag>out.action.key="GET@MAIN:IMP=Scene 7"  </tag></item>
+      <item>sélèctionne la scène 8 sur lampli   <tag>out.action.key="GET@MAIN:IMP=Scene 8"  </tag></item>
+      <item>sélèctionne la scène 9 sur lampli   <tag>out.action.key="GET@MAIN:IMP=Scene 9"  </tag></item>
+      <item>sélèctionne la scène 10 sur lampli  <tag>out.action.key="GET@MAIN:IMP=Scene 10" </tag></item>
+      <item>sélèctionne la radio 1 sur lampli   <tag>out.action.key="GET@MAIN:IMP=PRESET 1" </tag></item>
+      <item>sélèctionne la radio 2 sur lampli   <tag>out.action.key="GET@MAIN:IMP=PRESET 2" </tag></item>
+      <item>sélèctionne la radio 3 sur lampli   <tag>out.action.key="GET@MAIN:IMP=PRESET 3" </tag></item>
+      <item>sélèctionne la radio 4 sur lampli   <tag>out.action.key="GET@MAIN:IMP=PRESET 4" </tag></item>
+      <item>sélèctionne la radio 5 sur lampli   <tag>out.action.key="GET@MAIN:IMP=PRESET 5" </tag></item>
+      <item>sélèctionne la radio 6 sur lampli   <tag>out.action.key="GET@MAIN:IMP=PRESET 6" </tag></item>
+      <item>sélèctionne la radio 7 sur lampli   <tag>out.action.key="GET@MAIN:IMP=PRESET 7" </tag></item>
+      <item>sélèctionne la radio 8 sur lampli   <tag>out.action.key="GET@MAIN:IMP=PRESET 8" </tag></item>
+      <item>sélèctionne la radio 9 sur lampli   <tag>out.action.key="GET@MAIN:IMP=PRESET 9" </tag></item>
+      <item>sélèctionne la radio 10 sur lampli  <tag>out.action.key="GET@MAIN:IMP=PRESET 10"</tag></item>
+   </one-of>
+
+    <tag>out.action._attributes.uri="http://127.0.0.1:8080/sarah/rxvremote";</tag>
+  </rule>
+</grammar>
+
