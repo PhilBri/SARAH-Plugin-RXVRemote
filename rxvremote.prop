@@ -1,5 +1,6 @@
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
   "modules" : { 
     "rxvremote"    : {
       "description": "SARAH controle les amplis YAMAHA",
@@ -10,6 +11,8 @@
   }
 }
 =======
+=======
+>>>>>>> Merge branch 'master' of https://github.com/PhilBri/SARAH-RXVRemote
 	"modules" : {
 		"rxvremote"			: {
 			"description"	: "SARAH controle les amplis YAMAHA",
@@ -19,4 +22,18 @@
 		}
 	}
 }
+<<<<<<< HEAD
 >>>>>>> 	modified:   rxvremote.prop
+=======
+=======
+  "modules" : { 
+    "rxvremote"    : {
+      "description": "SARAH controle les amplis YAMAHA",
+      "version"    : "0.1",
+      "answers"    : "Je m'en occupe !|Voilà qui est fait !|C'est fait !|Voilà !|Tout de suite !",
+      "yamip"      : ""
+    }
+  }
+}
+>>>>>>> ddfcb14a15325d31fcabe3dba0b67b9109809e01
+>>>>>>> Merge branch 'master' of https://github.com/PhilBri/SARAH-RXVRemote
