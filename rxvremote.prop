@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "modules" : { 
     "rxvremote"    : {
       "description": "SARAH controle les amplis YAMAHA",
@@ -8,3 +9,14 @@
     }
   }
 }
+=======
+	"modules" : {
+		"rxvremote"			: {
+			"description"	: "SARAH controle les amplis YAMAHA",
+			"version"		: "1.0",
+			"answers"		: "Je m'en occupe !|Voilà qui est fait|C'est fait !|Tout de suite|Voila !",
+			"yamip"			: ""
+		}
+	}
+}
+>>>>>>> 	modified:   rxvremote.prop
