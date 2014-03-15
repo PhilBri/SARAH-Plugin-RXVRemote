@@ -1,0 +1,4 @@
+=== version 1.1 (15/03/2014) ===
+Retour des actions via tts.
+Traitement de l'ecriture via socket avec socket.en(action); au lieu de socket.write(action).
+Suppression du bug de latence lorsqu'on donne un ordre impossible à executer. (ie : "Allume l'ampli" si déjà allumé...).

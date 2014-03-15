@@ -1,0 +1,9 @@
+﻿{
+	"modules" : {
+		"rxvremote"			: {
+			"description"	: "SARAH controle les amplis YAMAHA",
+			"version"		: "1.0",
+			"yamip"			: ""
+		}
+	}
+}
