@@ -17,15 +17,15 @@ exports.init = function ( SARAH ) {
         return AmpliIP = config.modules.rxvremote.Ampli_IP;
     }
 
+    // Configure ip autodetection : (Auto Detect Plugin)
     if ( ! SARAH.context.rxvremote ) {
         fsearch();
         SARAH.listen ( 'autodetect', function ( data ) {
             if ( data.from != 'RXVRemote' ) fsearch();
-            else
-            {
-                if ( SARAH.context.rxvremote.ip ) console.log ( '\r\nRXVRemote => Ampli Yamaha IP = ' +
+            else {
+                if ( SARAH.context.rxvremote.ip ) console.log ( '\r\nRXVRemote => Ampli Yamaha : ip = ' +
                     SARAH.context.rxvremote.ip + ' (Auto Detect Plugin)');
-                else console.log ( '\r\nRXVRemote => Ampli Yamaha non trouvé (Auto Detect Plugin)' );
+                else console.log ( '\r\nRXVRemote => Ampli Yamaha : Non trouvé (Auto Detect Plugin)' );
                 SARAH.context.flag = false;
             }
         });
@@ -34,7 +34,8 @@ exports.init = function ( SARAH ) {
     function fsearch () {
         if ( SARAH.context.flag != true ) {
             SARAH.context.flag = true;
-            findRXV = require ('./lib/findRXV.js' ) ( 'Yamaha', 'Yamaha', function ( RetIP ) {
+
+            findRXV = require ( './lib/findRXV.js' ) ( 'Yamaha', 'Yamaha', function ( RetIP ) {
                 SARAH.context.rxvremote = { 'ip' : RetIP };
                 AmpliIP = SARAH.context.rxvremote.ip;
                 SARAH.trigger ( 'autodetect', { 'from' : 'RXVRemote' });
