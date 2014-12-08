@@ -47,9 +47,10 @@ exports.init = function ( SARAH ) {
 exports.action = function ( data , callback , config , SARAH ) {
     var myReg = /\b(?:[0-9]{1,3}\.){3}[0-9]{1,3}\b/;
     
-    if ( ! myReg.test( AmpliIP ) && ! myReg.test( config.modules.rxvremote.Ampli_IP )) { 
+    if ( ! myReg.test( SARAH.context.rxvremote.ip ) && ! myReg.test( config.modules.rxvremote.Ampli_IP )) { 
         return callback ({ 'tts' : 'Ampli Yamaha non trouvée' }) }
 
+    AmpliIP = SARAH.context.rxvremote.ip;
 	var cmd = { key : data.key + '\r\n' , ip : AmpliIP };
 
 	if ( ! cmd.ip ) {
