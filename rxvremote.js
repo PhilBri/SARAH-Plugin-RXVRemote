@@ -20,8 +20,7 @@ exports.init = function ( SARAH ) {
         SARAH.listen ( 'autodetect', function ( data ) {
             if ( data.from != 'RXVRemote' ) fsearch();
             else {
-                if ( SARAH.context.rxvremote.ip ) console.log ( '\r\nRXVRemote => Autodetect [ON] : ip = ' +
-                    SARAH.context.rxvremote.ip + ' (Auto Detect Plugin)');
+                if ( SARAH.context.rxvremote.ip ) console.log ( '\r\nRXVRemote => Autodetect [ON] : ip = ' + SARAH.context.rxvremote.ip );
                 else console.log ( '\r\nRXVRemote => Autodetect [ON] : ip non trouvé !' );
                 SARAH.context.flag = false;
             }
@@ -46,29 +45,20 @@ exports.action = function ( data , callback , config , SARAH ) {
 
     if ( typeof(SARAH.context.rxvremote) != 'undefined' ) AmpliIP = SARAH.context.rxvremote.ip
     else if ( myReg.test( config.modules.RxvRemote.Ampli_IP ) == true ) AmpliIP = config.modules.RxvRemote.Ampli_IP
-    else return callback ({ 'tts' : 'Ampli Yamaha non trouvé.' })
+    else return callback ({ 'tts' : 'Ampli Yamaha non trouvé.' });
+    
+    var cmd = { key : data.key + '\r\n' , ip : AmpliIP.toString() };
 
-	var net = require ( 'net' );
-	var socket = net.connect ({ host: '"'+AmpliIP+'"', port: 50000 },function () {
-		console.log ( '\r\nRXVRemote => Commande : ' + data.key + ' ip ' + AmpliIP );
-		socket.end ( data.key );
+    var net = require ( 'net' );
+	var socket = net.connect ({ host: cmd.ip, port: 50000 },function () {
 		
-		socket.on( 'data' , function ( data ) {
-            switch ( data ) {
-                case '@UNDEFINED\r\n' :
-                    data.ttsAction = 'Erreur de commande.';
-                    break;
-                case '@RESTRICTED\r\n' :
-                    data.ttsAction = 'Commande indisponible.';
-            }
-			console.log ( '\r\nRXVRemote => Retour = ' + data );
-		});
+        console.log ( '\nRXVRemote => Commande [OK]: ' + data.ttsAction );
+		socket.end ( cmd.key );
 
 		socket.on ( 'error' , function ( error ) {
-			console.log ( '\r\nRXVRemote => Erreur : ' + error );
+			console.log ( '\nRXVRemote => Erreur : ' + error.message );
 			socket.destroy ();
 		});
 	});
-
 	callback ({ 'tts': data.ttsAction });
 }
