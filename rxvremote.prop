@@ -2,7 +2,7 @@
 	"modules" : {
 		"RxvRemote"  : {
 			"description": "SARAH controle les amplis YAMAHA",
-			"version" : "2.2",
+			"version" : "4.0",
 			"Ampli_IP" : "autodetect"
 		}
 	}
