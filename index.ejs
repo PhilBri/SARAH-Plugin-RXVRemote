@@ -61,7 +61,7 @@
           Vous avez donc 2 possibilités via le portlet du module :
           <ul>
             <li>Laisser le module trouver votre ampli : <code>{Ampli_IP} : autodetect</code></li>
-            <li>Paramétrer l'IP : <code>{Ampli_IP} : 192.168.1.10</code></li>
+            <li>Paramétrer l'IP : <code>{Ampli_IP} : 192.168.xxx.xxx</code></li>
           </ul>
           <strong>RXVRemote</strong> vous avertira des erreurs éventuelles.
        </div>
@@ -77,12 +77,12 @@
             Les requètes sont envoyées vers l'ampli au format YNCA qui est plus ancien que le format YNC généralement utilisé. Il s'agit, en fait, de celui de l'interface RS232...
           </p>
           <p>
-            Ce choix est dû en grande partie à la compacité des commandes (YNC utilise des structures XML), mais aussi au fait que l'on puisse utiliser le <code>{port} : 50000</code> qui est une socket.
+            Ce choix est dû en grande partie à la compacité des commandes (YNC utilise des structures XML plus contraignates à créer/décoder), mais aussi au fait que l'on puisse utiliser le <code>{port} : 50000</code> qui est une socket.
           </p>
           <strong>Les avantages</strong>
           <ul>
             <li>Temps de réaction.</li>
-            <li>Retour d'infos de l'ampli (bidirectionnel)</li>
+            <li>Retour d'infos de l'ampli (bidirectionnel).</li>
           </ul>
           <strong>Exemples de commandes</strong>
           <ul>
@@ -108,7 +108,7 @@
           <p><strong>Modifications</strong></p>
             L'ensemble de la grammaire utilisée par le module est stockée dans le fichier <code>RxvRemote.xml</code>
           <p>
-            Ce fichier est aisémant modifiable par vos soins pour vous permettre de modifier, ajouter ou retirer une commande vocale.
+            Ce fichier est aisément éditable par vos soins pour vous permettre de modifier, ajouter ou retirer une commande vocale.
           </p>
        </div>
       </div>
