@@ -1,48 +1,41 @@
-/*__________________________________________________
-|                 RXVRemote v4.0                    |
-|                                                   |
-| Authors : Phil Bri ( 05/2015 ) 					|
-| Description :                                     |
-|    YAMAHA Amplifier Plugin for SARAH V4.x project |
-|    (See http://encausse.wordpress.com/s-a-r-a-h/) |
-|___________________________________________________|
-*/
+var socket;
 
-exports.init = function ( SARAH ) {
+function setSocket () {
+    socket = require('net').createConnection(50000, SARAH.context.rxvremote.ip);
 
-    if ( /^autodetect$/i.test( Config.modules.RxvRemote.Ampli_IP ) == false) return console.log('RXVRemote => Autodetect [OFF]')
-    else console.log('RXVRemote => Autodetect [ON] : Recherche de l\'IP en cours...');
+    var ival = setInterval( function () {
+        socket.write('@SYS:MODELNAME=?\r\n');
+    }, 39000);
 
-    // Configure UpNp ip autodetection : (Auto Detect Plugin)
-    if ( ! SARAH.context.rxvremote ) {
-        findRXV = require ( './lib/findRXV.js' ) ( 'Yamaha', 'Yamaha', function ( RetIP ) {
-            SARAH.context.rxvremote = { 'ip' : RetIP };
-            if ( SARAH.context.rxvremote.ip ) console.log ( '\r\nRXVRemote => Autodetect [ON] : ip = ' + SARAH.context.rxvremote.ip );
-            else console.log ( '\r\nRXVRemote => Autodetect [ON] : ip non trouvé !' );
-        });
-    }
+    socket.on('connect', function (){
+        console.log('\x1b[96m[  INFO ]\x1b[0m RxvRemote: Connected.');
+        socket.write('@MAIN:PWR=?\r\n');
+        socket.write('@MAIN:INP=?\r\n');
+    }).on('end', function (){
+        console.log('\033[91m[ ERROR ]\033[0m RxvRemote: Deconnected.');
+        clearInterval(ival);
+    }).on('error', function (erreur){
+        console.log('\033[91m[ ERROR ]\033[0m RxvRemote: ' + erreur.message );
+        socket.destroy();
+    });
 }
 
-exports.action = function ( data , callback , config , SARAH ) {
-    var myReg = /\b(?:[0-9]{1,3}\.){3}[0-9]{1,3}\b/,
-        AmpliIP;
+exports.init = function (SARAH) {
+    if (!SARAH.context.rxvremote) {
+        if (/\b(?:[0-9]{1,3}\.){3}[0-9]{1,3}\b/.test(Config.modules.RxvRemote.Ampli_IP)==true)
+            SARAH.context.rxvremote = {ip: Config.modules.RxvRemote.Ampli_IP};
+        else {
+            findRXV = require ('./lib/findRXV.js') ('Yamaha', 'Yamaha', function (RetIP) {
+                SARAH.context.rxvremote = {ip: RetIP};
+                if (SARAH.context.rxvremote.ip) setSocket();
+                else return console.log ('\033[91m[ ERROR ]\033[0m RxvRemote: IP not find!');
+            });
+        }
+    } 
+}
 
-    if ( typeof(SARAH.context.rxvremote) != 'undefined' && SARAH.context.rxvremote.ip != '') AmpliIP = SARAH.context.rxvremote.ip
-    else if ( myReg.test( Config.modules.RxvRemote.Ampli_IP ) == true ) AmpliIP = Config.modules.RxvRemote.Ampli_IP
-    else return callback ({ 'tts' : 'Ampli Yamaha non trouvé.' });
-    
-    var cmd = { key : data.key + '\r\n' , ip : AmpliIP.toString() };
-
-    var net = require ( 'net' );
-	var socket = net.connect ({ host: cmd.ip, port: 50000 },function () {
-		
-        console.log ( '\nRXVRemote => Commande [OK]: ' + data.ttsAction );
-		socket.end ( cmd.key );
-
-		socket.on ( 'error' , function ( error ) {
-			console.log ( '\nRXVRemote => Erreur : ' + error.message );
-			socket.destroy ();
-		});
-	});
-	callback ({ 'tts': data.ttsAction });
+exports.action = function (data , next) {
+    console.log('\x1b[92m[    OK ]\x1b[0m RxvRemote: Commande => '+data.tts);
+    socket.write(data.key+'\r\n');
+	next ({'tts': data.tts});
 }
